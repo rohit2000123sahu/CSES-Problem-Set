@@ -29,10 +29,10 @@ int main()
 
         ll temp = a+b;
 
-        if(temp%3==0 && a>=temp/3 && b>=temp/3){
+        if(temp%3==0 && a>=temp/3 && b>=temp/3){            //If total sum is divisible by 3 then we could only do it. Also in both there should be atleast total/3 coins.
             cout<<"YES"<<endl;
         }else{
-            cout<<"NO"<<endl;
+            cout<<"NO"<<endl;                               // Else No
         }
 
 
