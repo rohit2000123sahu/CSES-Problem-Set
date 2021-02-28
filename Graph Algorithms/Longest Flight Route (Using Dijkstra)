@@ -1,0 +1,96 @@
+// Note this solution will give TLE for some test cases.
+// Hence for submission consider the above one.
+// It is only for showing the application of Dijkstra
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define PI 3.1415926535897932384626
+#define all(x) x.begin(),x.end()
+#define endl '\n'
+#define MOD 1000000007
+#define INF 1e15
+typedef vector< ll > vl;
+typedef pair< ll , ll > pl;
+typedef unordered_map< ll, ll > uml;
+typedef vector< pl > vpl;
+typedef map< ll, ll > ml;
+
+vl adj[100005];
+ll n;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    ll m;
+    cin>>n>>m;
+
+    ll u,v;
+
+    while(m--){
+        cin>>u>>v;
+        adj[u].pb(v);
+    }
+
+    ll dist[n+1],i;
+
+    ll relaxant[n+1];
+    relaxant[1]=-1;
+
+    for(i=0;i<=n;i++){
+        dist[i]=INF;
+    }
+
+    priority_queue< pl , vpl ,greater< pl > >pq;
+
+    pq.push(mp(0,1));
+    dist[1]=0;
+
+    while(!pq.empty()){
+        pl curr=pq.top();
+        pq.pop();
+
+        u=curr.S;
+
+        if(dist[u]<curr.F){
+            continue;
+        }
+
+        for(auto v: adj[u]){
+            if(dist[u]+(-1)<dist[v]){
+                dist[v]=dist[u]+(-1);
+                relaxant[v]=u;
+                pq.push(mp(dist[v],v));
+            }
+        }
+    }
+
+    if(dist[n]==INF){
+        cout<<"IMPOSSIBLE"<<endl;
+    }else{
+        cout<<(-1*dist[n])+1<<endl;
+        stack< ll > s;
+
+        ll temp=n;
+
+        while(temp!=-1){
+            s.push(temp);
+            temp=relaxant[temp];
+        }
+
+        while(!s.empty()){
+            cout<<s.top()<<" ";
+            s.pop();
+        }
+
+    }
+
+    return 0;
+}
