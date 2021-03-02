@@ -26,40 +26,40 @@ ll solve(ll i, ll par){
     }
 
     if(dp[i]!=-1){
-        return dp[i];
+        return dp[i];       // If the subproblem is already computed then return it.
     }
 
     ll ans=0;
 
-    map< ll ,bool > m;
+    map< ll ,bool > m;     // Map to store if we have selected the its child then true and if we selected its grandchild then false
     
     for(auto c: adj[i]){
-        if(c==par){
+        if(c==par){         // If parent then continue
             continue;
         }
 
-        ll temp1=solve(c,i);
-        ll temp2=0;
+        ll temp1=solve(c,i);    // For child  (also passing the parent)
+        ll temp2=0;             // For grand child
 
-        for(auto d: adj[c]){
-            if(d==i){
+        for(auto d: adj[c]){    // Computation for grand child
+            if(d==i){       
                 continue;
             }
-            temp2+=solve(d,c);
+            temp2+=solve(d,c);  
         }
 
-        if(temp1>temp2){
+        if(temp1>temp2){        // If maximum is for child then select it.
             ans+=temp1;
             m[c]=true;
-        }else{
+        }else{                 //  If maximum is for grand child then include it.
             ans+=temp2;
             m[c]=false;
         }
 
     }
 
-    for(auto c: m){
-        if(c.second==false){
+    for(auto c: m){             // Now we will loop through the map and will see if we have selected any grand child 
+        if(c.second==false){    // If we have selected any grand child then we can increment ourr answer by 1 because we can consider one more edge as (parent, child)
             ans++;
             break;
         }
@@ -68,7 +68,7 @@ ll solve(ll i, ll par){
     dp[i]=ans;
 
 
-    return dp[i];
+    return dp[i];           // Returning the ans after storing it in dp
 
 }
 
