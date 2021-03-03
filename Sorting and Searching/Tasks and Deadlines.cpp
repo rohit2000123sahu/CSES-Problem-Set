@@ -30,20 +30,20 @@ int main()
     for(i=0;i<n;i++){
         cin>>duration[i];
         cin>>deadline;
-        profit+=deadline;
+        profit+=deadline;           // Calculatiing the maximum profit if all the task are done at time=0;
     }
 
-    sort(duration,duration+n);
+    sort(duration,duration+n);      // Now to minimize the loss we should sort it in the increasing order
 
     ll loss=0;
-    ll sum=0;
+    ll sum=0;                       // Total time that has been used
 
     for(i=0;i<n;i++){
-        loss+=sum+duration[i];
-        sum+=duration[i];
+        loss+=sum+duration[i];      // Now the loss would be total time used for previous works(i.e. sum ) and current work duration(i.e. duration[i])
+        sum+=duration[i];           // Now incrementing the total time
     }
 
-    cout<<profit-loss<<endl;
+    cout<<profit-loss<<endl;        // Finally substracting the loss from the profit to get the ans
 
 
     return 0;
