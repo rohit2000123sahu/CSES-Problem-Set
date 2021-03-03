@@ -46,7 +46,7 @@ int main()
     }
 
     sort(a,a+n);
-    if(a[n-1]>=sum-a[n-1]){
+    if(a[n-1]>=sum-a[n-1]){         // Here we will just check if the sum of all the terms except the maximum one is greater than or eqaul to maximum term or not
         cout<<2*a[n-1];
     }else{
         cout<<sum;
