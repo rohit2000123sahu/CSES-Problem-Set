@@ -1,3 +1,4 @@
+// We will use the segment tree in this question
 #include <bits/stdc++.h>
 using namespace std;
 
