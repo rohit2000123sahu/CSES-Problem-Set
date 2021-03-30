@@ -47,7 +47,7 @@ int main()
 
     for(i=1;i<=n;i++){
         for(j=1;j<=n;j++){
-            dp[i][j]=dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1]+mat[i][j];
+            dp[i][j]=dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1]+mat[i][j];      // Here we are calculating the number of trees in the (1,1) to (i,j) rectangle;
         }
     }    
 
@@ -55,7 +55,7 @@ int main()
         ll x1,y1,x2,y2;
         cin>>x1>>y1>>x2>>y2;
 
-        cout<<dp[x2][y2]-dp[x2][y1-1]-dp[x1-1][y2]+dp[x1-1][y1-1]<<endl;
+        cout<<dp[x2][y2]-dp[x2][y1-1]-dp[x1-1][y2]+dp[x1-1][y1-1]<<endl;       // This is used for the finding the answer i.e. rectangle (x1,y1) to (x2,y2);
     }
 
     return 0;
