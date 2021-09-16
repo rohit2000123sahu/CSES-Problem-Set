@@ -30,27 +30,20 @@ int main()
         vect.pb(mp(temp,i));
     }
 
-    sort(vect.begin(),vect.end());
-
-    // for(auto c:vect){
-    //     cout<<c.first<<" "<<c.second<<endl;
-    // }
+    sort(vect.begin(),vect.end());          // Sorting on the based of the values
     
     ll ans=0;
 
     i=0;
     while(i<n){
         i++;
-        while(i<n && vect[i].second>vect[i-1].second){
+        while(i<n && vect[i].second>vect[i-1].second){          // Collecting the maximum number we could collect in one go
             i++;
         }
         ans++;
     }
 
     cout<<ans<<endl;
-
-
-
 
     return 0;
 }
